@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Order Page</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Order Details</h1>
+        </header>
+        <div class="order-details">
+            <img id="product-image" src="" alt="Product Image" style="width: 150px; height: 150px;">
+            <h2 id="product-name"></h2>
+            <p>Price: ₹ <span id="product-price"></span> per kg</p> <!-- Updated here -->
+            <p>Quantity: <span id="product-quantity"></span> kg</p>
+            <p>Total: ₹ <span id="total-price"></span></p> <!-- Updated here -->
+        </div>
+        <div class="user-info">
+            <h2>Your Information</h2>
+            <form id="order-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea>
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get the product details from localStorage
+        const productDetails = JSON.parse(localStorage.getItem('selectedProduct'));
+
+        // Display the product details
+        document.getElementById('product-image').src = productDetails.image;
+        document.getElementById('product-name').textContent = productDetails.name;
+        document.getElementById('product-price').textContent = productDetails.price;
+        document.getElementById('product-quantity').textContent = productDetails.quantity;
+        document.getElementById('total-price').textContent = (productDetails.price * productDetails.quantity).toFixed(2);
+
+        // Handle form submission
+        document.getElementById('order-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+
+            // Simulate order placement
+            alert(`Thank you, ${name}! Your order for ${productDetails.quantity} kg of ${productDetails.name} has been placed. We will contact you at ${phone} to confirm your address: ${address}.`);
+        });
+    </script>
+</body>
+</html>

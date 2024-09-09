@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Buyer Dashboard</title>
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AGRoKArT - Buyer Dashboard</h1>
+            <div class="user-info">
+                <span id="greeting">Hi, <span id="username">User</span></span>
+                <img src="https://www.adgully.com/img/800/202004/agri-ecommerce_2.jpg" alt="Logo" class="logo" onclick="openAccount()">
+                <div class="cart">
+                    <a href="cart.html">Your Cart</a>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <h2>Welcome, Buyer!</h2>
+            <p>Here you can browse and purchase products.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search for products..." onkeyup="filterProducts()">
+        </div>
+
+        <!-- Featured Products Section -->
+        <div class="slideshow-container">
+            <div class="mySlides">
+                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcScZukZ99lpUMaAnSNXUqw6C5yovkGe-8P32JbC39rCt2zsAz-f" style="width:100%">
+            </div>
+            <div class="mySlides">
+                <img src="https://www.thespruceeats.com/thmb/xwPu63_17gkii8rzzXSfj7NB-xk=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Tray-of-Tomatoes-57f79fbe5f9b586c353be128.jpg" style="width:100%">
+            </div>
+            <div class="mySlides">
+                <img src="https://www.thespruceeats.com/thmb/-Scmbe6grcVdRjDnNeSb0mc84_k=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/walnuts-in-wooden-bowl-553359455-588a1f383df78caebcc4cbcd.jpg" style="width:100%">
+            </div>
+        </div>
+
+        <header>
+            <h1>Available Products</h1>
+        </header>
+        <div id="products-section">
+            <h2>Available Crops</h2>
+            <div id="available-products">
+                <!-- Products will be displayed here dynamically -->
+            </div>
+        </div>
+
+        <div id="loading" style="display: none; text-align: center;"></div>
+            <p>Loading more products...</p>
+        </div>
+    </div>
+
+    <script src="buyer.js"></script>
+    <script>
+        // Slideshow functionality
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            const slides = document.getElementsByClassName("mySlides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex - 1].style.display = "block";  
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+
+        // Filter products based on search input
+        function filterProducts() {
+            const input = document.getElementById('search-bar').value.toLowerCase();
+            const productItems = document.getElementsByClassName('product-item');
+
+            for (let i = 0; i < productItems.length; i++) {
+                const productName = productItems[i].querySelector('p').innerText.toLowerCase();
+                if (productName.includes(input)) {
+                    productItems[i].style.display = '';
+                } else {
+                    productItems[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

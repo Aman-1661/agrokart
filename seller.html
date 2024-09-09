@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Seller Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Seller Dashboard</h1>
+            <div class="user-info">
+                <span id="greeting">Hi, <span id="username">User</span></span>
+            </div>
+        </header>
+        <div class="content"></div>
+            <h2>Welcome, Seller!</h2>
+            <p>Here you can sell and manage your products.</p>
+        </div>
+        <div class="options-container">
+            <h2>Select an Option</h2>
+            <div class="options">
+                <button onclick="openSellingProducts()">Selling Products</button>
+                <button onclick="openManagingProducts()">Managing Products</button>
+                <button onclick="openSellingHistory()">Selling History</button>
+            </div>
+        </div>
+        
+        <!-- Success Message -->
+        <div id="success-message" class="success-message"></div>
+    </div>
+
+    <!-- Selling Products Modal -->
+    <div id="selling-products-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSellingProducts()">&times;</span>
+            <h2>Selling Products</h2>
+            <form id="crop-upload-form">
+                <label for="crop-image">Upload Crop Image:</label>
+                <input type="file" id="crop-image" accept="image/*" required>
+                <label for="crop-price">Price:</label>
+                <input type="number" id="crop-price" placeholder="Enter Price" required>
+                <label for="crop-quantity-grams">Quantity (grams):</label>
+                <input type="number" id="crop-quantity-grams" placeholder="Enter Quantity in grams" required>
+                <label for="crop-quantity-kgs">Quantity (kgs):</label>
+                <input type="number" id="crop-quantity-kgs" placeholder="Enter Quantity in kgs" required>
+                <button type="submit">Upload Crop</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Managing Products Modal -->
+    <div id="managing-products-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeManagingProducts()">&times;</span>
+            <h2>Managing Products</h2>
+            <table id="products-table">
+                <thead>
+                    <tr>
+                        <th>Product Image</th>
+                        <th>Price</th>
+                        <th>Quantity (grams)</th>
+                        <th>Quantity (kgs)</th>
+                        <th>No. of Buyers</th>
+                        <th>Total Quantity Sold</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="https://img.freepik.com/free-photo/bowl-ripe-potato-marble-table_114579-74893.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1723334400&semt=ais_hybrid" alt="Crop Image"></td>
+                        <td>45</td>
+                        <td>1000</td>
+                        <td>1</td>
+                        <td>13</td>
+                        <td>7</td>
+                        <td><button  
+                            onclick="simulatePurchase(0)">Purchase</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Selling History Modal -->
+    <div id="selling-history-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSellingHistory()">&times;</span>
+            <h2>Selling History</h2>
+            <table id="selling-history-table">
+                <thead>
+                    <tr>
+                        <th>Product Image</th>
+                        <th>Price</th>
+                        <th>Quantity Sold</th>
+                        <th>No. of Buyers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Selling history rows will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

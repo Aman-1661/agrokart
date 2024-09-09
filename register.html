@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Register</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AGRoKArT</h1>
+        </header>
+        <div class="form-container">
+            <form id="registration-form">
+                <h2>Register</h2>
+                <input type="text" id="first-name" placeholder="First Name" required>
+                <input type="text" id="last-name" placeholder="Last Name" required>
+                <input type="email" id="register-email" placeholder="Email" required>
+                <input type="text" id="register-username" placeholder="Username" required>
+                <input type="password" id="register-password" placeholder="Password" required>
+                <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                <button type="submit">Register</button>
+                <p>Already have an account? <a href="index.html">Login here</a></p>
+            </form>
+            <div id="register-error-message" class="error-message"></div> <!-- Add this line -->
+            <div id="register-success-message" class="success-message"></div> <!-- Add this line -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

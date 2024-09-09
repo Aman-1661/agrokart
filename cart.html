@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Your Cart</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Your Cart</h1>
+        </header>
+        <div id="cart-items">
+            <!-- Cart items will be displayed here dynamically -->
+        </div>
+        <div id="total-price-section">
+            <h2>Total Price: $<span id="total-price">0</span></h2>
+            <button onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to load cart items from localStorage and display them
+        function loadCartItems() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartItemsDiv = document.getElementById('cart-items');
+            let totalPrice = 0;
+
+            // Check if there are any items in the cart
+            if (cartItems.length === 0) {
+                cartItemsDiv.innerHTML = '<p>Your cart is empty.</p>';
+                return;
+            }
+
+            cartItems.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('cart-item');
+                itemDiv.innerHTML = `
+                    <img src="${item.image}" alt="Product Image" style="width: 100px; height: 100px;">
+                    <p>${item.name}</p>
+                    <p>Price: $${item.price} per kg</p>
+                    <p>Quantity: ${item.quantity} kg</p>
+                `;
+                cartItemsDiv.appendChild(itemDiv);
+                totalPrice += item.price * item.quantity; // Calculate total price
+            });
+
+            // Update total price display
+            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+        }
+
+        // Function to proceed to checkout
+        function proceedToCheckout() {
+            alert("Proceeding to checkout...");
+            // Here you can redirect to the checkout page or implement checkout logic
+        }
+
+        // Load cart items when the page is loaded
+        window.onload = loadCartItems;
+    </script>
+</body>
+</html>
